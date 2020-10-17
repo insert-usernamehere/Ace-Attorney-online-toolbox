@@ -26,4 +26,4 @@ async def log(ctx):
             
         
     
-bot.run('NzY2NzUyNDY0ODM2NzU1NDY3.X4n74Q.bFMVRsAjiB4TofJ5z02fYQy5zpw')
+bot.run('botid')
