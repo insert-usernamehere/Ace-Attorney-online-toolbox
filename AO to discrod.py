@@ -30,4 +30,4 @@ async def stoplog(ctx):
     
 
     
-bot.run('NzY2NzUyNDY0ODM2NzU1NDY3.X4n74Q.NMnDf4WxQEEQ1-2rfoCtiPimeG8')
+bot.run('botid')
