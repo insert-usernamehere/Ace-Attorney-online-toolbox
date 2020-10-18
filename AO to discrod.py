@@ -3,7 +3,7 @@ from discord.ext import commands
 from time import sleep
 import os
 
-client = commands.Bot(command_prefix='>')
+client = commands.Bot(command_prefix='!')
 
 
 keepLooping = False
