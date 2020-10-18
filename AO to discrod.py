@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 from time import sleep
 
-
 bot = commands.Bot(command_prefix='!')
 
 
@@ -20,10 +19,15 @@ async def log(ctx):
         m.write(last_line)
         m.close()
         if last_line == oldline:
-            pass 
+            pass
         else:
             await ctx.send(last_line)
-            
-        
+
+@bot.command()
+async def stoplog(ctx):
+     await ctx.send("stoping logging and shutting down")
+     await ctx.bot.logout()
     
-bot.run('botid')
+
+    
+bot.run('NzY2NzUyNDY0ODM2NzU1NDY3.X4n74Q.NMnDf4WxQEEQ1-2rfoCtiPimeG8')
