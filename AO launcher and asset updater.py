@@ -4,7 +4,7 @@ import os
 import tkinter
 import threading
 import sys
-from time import sleep
+import time
 
 
 top = tkinter.Tk()
@@ -12,6 +12,10 @@ top = tkinter.Tk()
 def DLCHR():
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading characters please wait")
+  if os.path.exists("base"):
+    pass
+  else:
+    os.mkdir("base")
   url ='https://insert-usernamehere.github.io/chrdblink.txt'
   wget.download(url, 'chrdblink.txt')
 
@@ -34,6 +38,10 @@ def DLCHR():
   T.delete(0, tkinter.END)
   T.insert(0, "Character downloading finished")
 def DLSOU():
+  if os.path.exists("base"):
+    pass
+  else:
+    os.mkdir("base")
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading sounds please wait")
   url ='https://insert-usernamehere.github.io/soudblink.txt'
@@ -58,6 +66,10 @@ def DLSOU():
   T.delete(0, tkinter.END)
   T.insert(0, "Sound downloading finished")
 def serveradd():
+  if os.path.exists("base"):
+    pass
+  else:
+    os.mkdir("base")
   T.delete(0, tkinter.END)
   T.insert(0, "now adding best bois courthouse please wait")
   if os.path.exists("base/serverlist.txt"):
@@ -101,10 +113,14 @@ def ALL():
   x = threading.Thread(target=serveradd)
   x.daemon = True
   x.start()
-  time.sleep("120")
+  T.delete(0, tkinter.END)
+  T.insert(0, "Doing everything please wait")
+  time.sleep(60)
   x = threading.Thread(target=startAO)
   x.daemon = True
   x.start()
+  T.delete(0, tkinter.END)
+  T.insert(0, "all downloading finished")
 def on_closing():
   top.destroy()
   sys.exit()
