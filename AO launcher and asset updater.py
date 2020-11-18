@@ -16,6 +16,10 @@ def DLCHR():
     pass
   else:
     os.mkdir("base")
+  if os.path.exists("base/characters"):
+    pass
+  else:
+    os.mkdir("base/characters")
   url ='https://insert-usernamehere.github.io/chrdblink.txt'
   wget.download(url, 'chrdblink.txt')
 
@@ -25,7 +29,7 @@ def DLCHR():
 
   wget.download(db, 'characters.zip')
   zf = ZipFile('characters.zip', 'r')
-  zf.extractall('base')
+  zf.extractall('base/characters')
   zf.close()
   if os.path.exists("chrdblink.txt"):
     os.remove("chrdblink.txt")
@@ -42,6 +46,10 @@ def DLSOU():
     pass
   else:
     os.mkdir("base")
+  if os.path.exists("base/sounds"):
+    pass
+  else:
+    os.mkdir("base/sounds")
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading sounds please wait")
   url ='https://insert-usernamehere.github.io/soudblink.txt'
@@ -53,7 +61,7 @@ def DLSOU():
 
   wget.download(db, 'sounds.zip')
   zf = ZipFile('sounds.zip', 'r')
-  zf.extractall('base')
+  zf.extractall('base/sounds')
   zf.close()
   if os.path.exists("soudblink.txt"):
     os.remove("soudblink.txt")
@@ -82,45 +90,50 @@ def serveradd():
   T.insert(0, "adding completed")
 def startAO():
   os.startfile("Attorney_Online.exe")
+def startAOA():
+  T.delete(0, tkinter.END)
+  T.insert(0, "Doing everything please wait")
+  time.sleep(68)
+  os.startfile("Attorney_Online.exe")
+  T.delete(0, tkinter.END)
+  T.insert(0, "all downloading finished")
 def DLCHRB():
   global x
   x = threading.Thread(target=DLCHR)
   x.daemon = True
   x.start()
 def DLSOUB():
-  global x
-  x = threading.Thread(target=DLSOU)
-  x.daemon = True
-  x.start()
+  global j
+  j = threading.Thread(target=DLSOU)
+  j.daemon = True
+  j.start()
 def serveraddB():
-  global x
-  x = threading.Thread(target=serveradd)
-  x.daemon = True
-  x.start()
+  global i
+  i = threading.Thread(target=serveradd)
+  i.daemon = True
+  i.start()
 def startAOB():
-  global x
-  x = threading.Thread(target=startAO)
-  x.daemon = True
-  x.start()
+  global v
+  v = threading.Thread(target=startAO)
+  v.daemon = True
+  v.start()
 def ALL():
-  global x
-  x = threading.Thread(target=DLCHR)
-  x.daemon = True
-  x.start()
-  x = threading.Thread(target=DLSOU)
-  x.daemon = True
-  x.start()
-  x = threading.Thread(target=serveradd)
-  x.daemon = True
-  x.start()
-  T.delete(0, tkinter.END)
-  T.insert(0, "Doing everything please wait")
-  time.sleep(60)
-  x = threading.Thread(target=startAO)
-  x.daemon = True
-  x.start()
-  T.delete(0, tkinter.END)
-  T.insert(0, "all downloading finished")
+  global a1
+  global a2
+  global a3
+  global a4
+  a1 = threading.Thread(target=DLCHR)
+  a1.daemon = True
+  a1.start()
+  a2 = threading.Thread(target=DLSOU)
+  a2.daemon = True
+  a2.start()
+  a3 = threading.Thread(target=serveradd)
+  a3.daemon = True
+  a3.start()
+  a4 = threading.Thread(target=startAOA)
+  a4.daemon = True
+  a4.start()
 def on_closing():
   top.destroy()
   sys.exit()
