@@ -11,6 +11,9 @@ if os.path.exists("logs/server.log"):
 else:
     pass
 
+m= open("logs/lastline.txt","w+")
+m.close()
+
 client = commands.Bot(command_prefix='!')
 
 
