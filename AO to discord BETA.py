@@ -25,10 +25,11 @@ async def on_message(message):
     if message.content.startswith("!log"):
         keepLooping = True
         while keepLooping:
-                    with open('logs/server.log') as f:
-                            for line in f:
-                                pass
-                            last_line = line
+                    with open('filename.txt', 'rb') as f:
+                        f.seek(-2, os.SEEK_END)
+                        while f.read(1) != b'\n':
+                            f.seek(-2, os.SEEK_CUR)
+                        lastline = f.readline().decode()
                             m= open("logs/lastline.txt","r")
                             oldline =m.read()
                             m.close() 
