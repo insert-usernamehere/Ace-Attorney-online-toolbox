@@ -30,18 +30,18 @@ async def on_message(message):
                         while f.read(1) != b'\n':
                             f.seek(-2, os.SEEK_CUR)
                         lastline = f.readline().decode()
-                            m= open("logs/lastline.txt","r")
-                            oldline =m.read()
-                            m.close() 
-                            m= open("logs/lastline.txt","w+")
-                            m.write(last_line)
-                            m.close()
-                            if last_line == oldline:
-                                pass
-                            elif last_line !=oldline:
-                                await message.channel.send(last_line)
-    elif message.content.startswith("!stoplog"):
-        keepLooping = False
+                             m= open("logs/lastline.txt","r")
+                             oldline =m.read()
+                              m.close() 
+                              m= open("logs/lastline.txt","w+")
+                              m.write(last_line)
+                              m.close()
+                              if last_line == oldline:
+                                 pass
+                               elif last_line !=oldline:
+                                    await message.channel.send(last_line)
+     elif message.content.startswith("!stoplog"):
+            keepLooping = False
 
     
 
