@@ -12,35 +12,32 @@ top = tkinter.Tk()
 def DLCHR():
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading characters please wait")
-  if os.path.exists("base"):
-    pass
-  else:
-    os.mkdir("base")
-  if os.path.exists("base/characters"):
-    pass
-  else:
-    os.mkdir("base/characters")
-  url ='https://insert-usernamehere.github.io/chrdblink.txt'
-  wget.download(url, 'chrdblink.txt')
-
-  f=open("chrdblink.txt", "r")
-  db = f.read()
-  f.close()
-
-  wget.download(db, 'characters.zip')
-  zf = ZipFile('characters.zip', 'r')
-  zf.extractall('base/characters')
-  zf.close()
-  if os.path.exists("chrdblink.txt"):
-    os.remove("chrdblink.txt")
-  else:
-    pass
-  if os.path.exists("characters.zip"):
-    os.remove("characters.zip")
-  else:
-    pass
-  T.delete(0, tkinter.END)
-  T.insert(0, "Character downloading finished")
+  try:
+      if os.path.exists("base"):
+        pass
+      else:
+        os.mkdir("base")
+      if os.path.exists("base/characters"):
+        pass
+      else:
+        os.mkdir("base/characters")
+      wget.download('http://fierce-push.auto.playit.gg:53368/characters.zip', 'characters.zip')
+      zf = ZipFile('characters.zip', 'r')
+      zf.extractall('base/characters')
+      zf.close()
+      if os.path.exists("chrdblink.txt"):
+        os.remove("chrdblink.txt")
+      else:
+        pass
+      if os.path.exists("characters.zip"):
+        os.remove("characters.zip")
+      else:
+        pass
+      T.delete(0, tkinter.END)
+      T.insert(0, "Character downloading finished")
+  except BaseException:
+        T.delete(0, tkinter.END)
+        T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLCHR")
 def DLSOU():
   if os.path.exists("base"):
     pass
@@ -52,27 +49,24 @@ def DLSOU():
     os.mkdir("base/sounds")
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading sounds please wait")
-  url ='https://insert-usernamehere.github.io/soudblink.txt'
-  wget.download(url, 'soudblink.txt')
-
-  f=open("soudblink.txt", "r")
-  db = f.read()
-  f.close()
-
-  wget.download(db, 'sounds.zip')
-  zf = ZipFile('sounds.zip', 'r')
-  zf.extractall('base/sounds')
-  zf.close()
-  if os.path.exists("soudblink.txt"):
-    os.remove("soudblink.txt")
-  else:
-    pass
-  if os.path.exists("sounds.zip"):
-    os.remove("sounds.zip")
-  else:
-    pass
-  T.delete(0, tkinter.END)
-  T.insert(0, "Sound downloading finished")
+  try:
+      wget.download('http://fierce-push.auto.playit.gg:53368/sounds.zip', 'sounds.zip')
+      zf = ZipFile('sounds.zip', 'r')
+      zf.extractall('base/sounds')
+      zf.close()
+      if os.path.exists("soudblink.txt"):
+        os.remove("soudblink.txt")
+      else:
+        pass
+      if os.path.exists("sounds.zip"):
+        os.remove("sounds.zip")
+      else:
+        pass
+      T.delete(0, tkinter.END)
+      T.insert(0, "Sound downloading finished")
+  except BaseException:
+      T.delete(0, tkinter.END)
+      T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLSOU")
 def serveradd():
   if os.path.exists("base"):
     pass
@@ -80,23 +74,35 @@ def serveradd():
     os.mkdir("base")
   T.delete(0, tkinter.END)
   T.insert(0, "now adding best bois courthouse please wait")
-  if os.path.exists("base/serverlist.txt"):
-    os.remove("base/serverlist.txt")
-  else:
-    pass
-  url = 'https://insert-usernamehere.github.io/serverlist.txt'
-  wget.download(url, 'base/serverlist.txt')
-  T.delete(0, tkinter.END)
-  T.insert(0, "adding completed")
+  try:
+      if os.path.exists("base/serverlist.txt"):
+        os.remove("base/serverlist.txt")
+      else:
+        pass
+      url = 'http://fierce-push.auto.playit.gg:53368/serverlist.txt'
+      wget.download(url, 'base/serverlist.txt')
+      T.delete(0, tkinter.END)
+      T.insert(0, "adding completed")
+  except BaseException:
+      T.delete(0, tkinter.END)
+      T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process SERVERADD")
 def startAO():
-  os.startfile("Attorney_Online.exe")
+  try:
+    os.startfile("Attorney_Online.exe")
+  except BaseException:
+    T.delete(0, tkinter.END)
+    T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAO")
 def startAOA():
   T.delete(0, tkinter.END)
   T.insert(0, "Doing everything please wait")
-  time.sleep(68)
-  os.startfile("Attorney_Online.exe")
-  T.delete(0, tkinter.END)
-  T.insert(0, "all downloading finished")
+  time.sleep(89)
+  try:
+    os.startfile("Attorney_Online.exe")
+    T.delete(0, tkinter.END)
+    T.insert(0, "all downloading finished")
+  except BaseException:
+    T.delete(0, tkinter.END)
+    T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAOA")
 def DLCHRB():
   global x
   x = threading.Thread(target=DLCHR)
