@@ -64,7 +64,7 @@ def DLSOU():
         pass
       T.delete(0, tkinter.END)
       T.insert(0, "Sound downloading finished")
-  except Exception:
+  except BaseException:
       T.delete(0, tkinter.END)
       T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLSOU")
 def serveradd():
@@ -83,13 +83,13 @@ def serveradd():
       wget.download(url, 'base/serverlist.txt')
       T.delete(0, tkinter.END)
       T.insert(0, "adding completed")
-  except Exception:
+  except BaseException:
       T.delete(0, tkinter.END)
       T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process SERVERADD")
 def startAO():
   try:
     os.startfile("Attorney_Online.exe")
-  except Exception:
+  except BaseException:
     T.delete(0, tkinter.END)
     T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAO")
 def startAOA():
@@ -100,7 +100,7 @@ def startAOA():
     os.startfile("Attorney_Online.exe")
     T.delete(0, tkinter.END)
     T.insert(0, "all downloading finished")
-  except Exception:
+  except BaseException:
     T.delete(0, tkinter.END)
     T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAOA")
 def DLCHRB():
