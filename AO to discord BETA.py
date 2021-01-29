@@ -10,12 +10,6 @@ m.close()
 
 client = commands.Bot(command_prefix='!')
 
-with open("logs/server.log") as f:
-    lines = f.readlines()
-    first_row = lines[0]
-    print (first_row)
-    last_row = lines[-1]
-    print (last_row)
 
 keepLooping = False
 
@@ -28,7 +22,6 @@ async def on_message(message):
                         with open("logs/server.log") as f:
                             lines = f.readlines()
                             lastline = lines[-1]
-                            print (lastline)
                         m= open("logs/lastline.txt","r")
                         oldline =m.read()
                         m.close() 
