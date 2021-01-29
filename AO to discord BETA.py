@@ -5,17 +5,17 @@ import os
 import datetime
 
 
-if os.path.exists("logs/server.log"):
-    Current_Date = datetime.datetime.today().strftime(" %d %m %Y %H %M")
-    os.rename('logs/server.log','logs/old server log' + str(Current_Date) + '.log')
-else:
-    pass
-
 m= open("logs/lastline.txt","w+")
 m.close()
 
 client = commands.Bot(command_prefix='!')
 
+with open("logs/server.log") as f:
+    lines = f.readlines()
+    first_row = lines[0]
+    print (first_row)
+    last_row = lines[-1]
+    print (last_row)
 
 keepLooping = False
 
@@ -25,10 +25,10 @@ async def on_message(message):
     if message.content.startswith("!log"):
         keepLooping = True
         while keepLooping:
-                        fileHandle = open ( 'logs/server.log',"r" )
-                        lineList = fileHandle.readlines()
-                        fileHandle.close()
-                        print lineList
+                        with open("logs/server.log") as f:
+                            lines = f.readlines()
+                            lastline = lines[-1]
+                            print (lastline)
                         m= open("logs/lastline.txt","r")
                         oldline =m.read()
                         m.close() 
@@ -38,7 +38,7 @@ async def on_message(message):
                         if lastline == oldline:
                                 pass
                         elif lastline !=oldline:
-                          await message.channel.send(last_ine)
+                          await message.channel.send(lastline)
     elif message.content.startswith("!stoplog"):
             keepLooping = False
 
