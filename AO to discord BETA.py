@@ -25,22 +25,20 @@ async def on_message(message):
     if message.content.startswith("!log"):
         keepLooping = True
         while keepLooping:
-                    with open('logs/server.log', 'rb') as f:
-                        f.seek(-2, os.SEEK_END)
-                        while f.read(1) != b'\n':
-                            f.seek(-2, os.SEEK_CUR)
-                            global last_line
-                        last_line = f.readline().decode()
+                        fileHandle = open ( 'logs/server.log',"r" )
+                        lineList = fileHandle.readlines()
+                        fileHandle.close()
+                        print lineList
                         m= open("logs/lastline.txt","r")
                         oldline =m.read()
                         m.close() 
                         m= open("logs/lastline.txt","w+")
-                        m.write(last_line)
+                        m.write(lastline)
                         m.close()
-                        if last_line == oldline:
+                        if lastline == oldline:
                                 pass
-                        elif last_line !=oldline:
-                          await message.channel.send(last_line)
+                        elif lastline !=oldline:
+                          await message.channel.send(last_ine)
     elif message.content.startswith("!stoplog"):
             keepLooping = False
 
