@@ -44,4 +44,4 @@ async def on_ready():
     
 
     
-client.run('\botid')
+client.run('botid')
