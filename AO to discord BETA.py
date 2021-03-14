@@ -17,6 +17,7 @@ keepLooping = False
 async def on_message(message):
     global keepLooping
     if message.content.startswith("!log"):
+        await message.channel.send("logging started")
         keepLooping = True
         while keepLooping:
                         with open("logs/server.log") as f:
@@ -32,10 +33,15 @@ async def on_message(message):
                                 pass
                         elif lastline !=oldline:
                           await message.channel.send(lastline)
+                          await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="logging"))
     elif message.content.startswith("!stoplog"):
+            await message.channel.send("stopped logging (this may take a couple of seconds)")
             keepLooping = False
 
+@client.event
+async def on_ready():
+    await client.change_presence(status=discord.Status.idle, activity=discord.Game(name="logging"))
     
 
     
-client.run('botid')
+client.run('\botid')
