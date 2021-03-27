@@ -21,7 +21,7 @@ def DLCHR():
         pass
       else:
         os.mkdir("base/characters")
-      wget.download('http://fierce-push.auto.playit.gg:53368/characters.zip', 'characters.zip')
+      wget.download('http://fierce-push.auto.playit.gg:47746/characters.zip', 'characters.zip')
       zf = ZipFile('characters.zip', 'r')
       zf.extractall('base/characters')
       zf.close()
@@ -50,7 +50,7 @@ def DLCORT():
         pass
       else:
         os.mkdir("base/background")
-      wget.download('http://fierce-push.auto.playit.gg:53368/courtrooms.zip', 'courtrooms.zip')
+      wget.download('http://fierce-push.auto.playit.gg:47746/courtrooms.zip', 'courtrooms.zip')
       zf = ZipFile('courtrooms.zip', 'r')
       zf.extractall('base/background')
       zf.close()
@@ -79,7 +79,7 @@ def DLSOU():
   T.delete(0, tkinter.END)
   T.insert(0, "now downloading sounds please wait")
   try:
-      wget.download('http://fierce-push.auto.playit.gg:53368/sounds.zip', 'sounds.zip')
+      wget.download('http://fierce-push.auto.playit.gg:47746/sounds.zip', 'sounds.zip')
       zf = ZipFile('sounds.zip', 'r')
       zf.extractall('base/sounds')
       zf.close()
@@ -108,7 +108,7 @@ def serveradd():
         os.remove("base/serverlist.txt")
       else:
         pass
-      url = 'http://fierce-push.auto.playit.gg:53368/serverlist.txt'
+      url = 'http://fierce-push.auto.playit.gg:47746/serverlist.txt'
       wget.download(url, 'base/serverlist.txt')
       T.delete(0, tkinter.END)
       T.insert(0, "adding completed")
@@ -124,7 +124,7 @@ def startAO():
 def startAOA():
   T.delete(0, tkinter.END)
   T.insert(0, "Doing everything please wait")
-  time.sleep(97)
+  time.sleep(130)
   try:
     os.startfile("Attorney_Online.exe")
     T.delete(0, tkinter.END)
