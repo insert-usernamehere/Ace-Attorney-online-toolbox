@@ -2,16 +2,25 @@ import wget
 from zipfile import ZipFile
 import os
 import tkinter
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QLabel
+from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QPushButton
+from PyQt5.QtWidgets import QVBoxLayout
+from PyQt5.QtWidgets import QWidget
 import threading
 import sys
 import time
 
 
-top = tkinter.Tk()
+app = QApplication(sys.argv)
+window = QWidget()
+layout = QVBoxLayout()
+msg = QLabel('Welcome to the AO launcher')
+
 
 def DLCHR():
-  T.delete(0, tkinter.END)
-  T.insert(0, "now downloading characters please wait")
+  msg.setText('now downloading characters please wait')
   try:
       if os.path.exists("base"):
         pass
@@ -33,14 +42,11 @@ def DLCHR():
         os.remove("characters.zip")
       else:
         pass
-      T.delete(0, tkinter.END)
-      T.insert(0, "Character downloading finished")
+      msg.setText('Character downloading finished')
   except Exception:
-        T.delete(0, tkinter.END)
-        T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLCHR")
+        msg.setText('oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLCHR')
 def DLCORT():
-  T.delete(0, tkinter.END)
-  T.insert(0, "now downloading courtrooms please wait")
+  msg.setText('now downloading courtrooms please wait')
   try:
       if os.path.exists("base"):
         pass
@@ -62,11 +68,9 @@ def DLCORT():
         os.remove("courtrooms.zip")
       else:
         pass
-      T.delete(0, tkinter.END)
-      T.insert(0, "Courtroom downloading finished")
+      msg.setText("Courtroom downloading finished")
   except Exception:
-        T.delete(0, tkinter.END)
-        T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLCORT")
+        msg.setText("oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLCORT")
 def DLSOU():
   if os.path.exists("base"):
     pass
@@ -76,8 +80,7 @@ def DLSOU():
     pass
   else:
     os.mkdir("base/sounds")
-  T.delete(0, tkinter.END)
-  T.insert(0, "now downloading sounds please wait")
+  msg.setText("now downloading sounds please wait")
   try:
       wget.download('http://fierce-push.auto.playit.gg:47746/sounds.zip', 'sounds.zip')
       zf = ZipFile('sounds.zip', 'r')
@@ -91,18 +94,15 @@ def DLSOU():
         os.remove("sounds.zip")
       else:
         pass
-      T.delete(0, tkinter.END)
-      T.insert(0, "Sound downloading finished")
+      msg.setText("Sound downloading finished")
   except BaseException:
-      T.delete(0, tkinter.END)
-      T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLSOU")
+      msg.setText("oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process DLSOU")
 def serveradd():
   if os.path.exists("base"):
     pass
   else:
     os.mkdir("base")
-  T.delete(0, tkinter.END)
-  T.insert(0, "now adding best bois courthouse please wait")
+  msg.setText("now adding best bois courthouse please wait")
   try:
       if os.path.exists("base/serverlist.txt"):
         os.remove("base/serverlist.txt")
@@ -110,28 +110,22 @@ def serveradd():
         pass
       url = 'http://fierce-push.auto.playit.gg:47746/serverlist.txt'
       wget.download(url, 'base/serverlist.txt')
-      T.delete(0, tkinter.END)
-      T.insert(0, "adding completed")
+      msg.setText("adding completed")
   except BaseException:
-      T.delete(0, tkinter.END)
-      T.insert(0, "oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process SERVERADD")
+      msg.setText("oh no! an error occoured this might be due to the server being down please wait 5 minutes and try again. DEBUG INFO: exception on process SERVERADD")
 def startAO():
   try:
     os.startfile("Attorney_Online.exe")
   except BaseException:
-    T.delete(0, tkinter.END)
-    T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAO")
+    msg.setText("oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAO")
 def startAOA():
-  T.delete(0, tkinter.END)
-  T.insert(0, "Doing everything please wait")
-  time.sleep(130)
+  msg.setText("Doing everything please wait")
+  time.sleep(113)
   try:
     os.startfile("Attorney_Online.exe")
-    T.delete(0, tkinter.END)
-    T.insert(0, "all downloading finished")
+    msg.setText("all downloading finished")
   except BaseException:
-    T.delete(0, tkinter.END)
-    T.insert(0, "oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAOA")
+    msg.setText("oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAOA")
 def DLCHRB():
   global x
   x = threading.Thread(target=DLCHR)
@@ -178,32 +172,32 @@ def ALL():
   a4 = threading.Thread(target=startAOA)
   a4.daemon = True
   a4.start()
-def on_closing():
-  top.destroy()
-  sys.exit()
 
-T = tkinter.Entry(top,width=50)
-T.pack()
 
-T.delete(0, tkinter.END)
-T.insert(0, "Welcome to the AO launcher")
+
+layout.addWidget(msg)
+
   
-A = tkinter.Button(top, text ="download characters", command = DLCHRB)
-L = tkinter.Button(top, text ="download courtrooms", command = DLCORTB)
-B = tkinter.Button(top, text ="download sounds", command = DLSOUB)
-D = tkinter.Button(top, text ="start AO", command = startAOB)
-C = tkinter.Button(top, text ="add best bois courthouse server", command = serveraddB)
-E = tkinter.Button(top, text ="Do it all", command = ALL)
-F = tkinter.Button(top, text ="kill thread (debug)", command = on_closing)
-A.pack()
-L.pack()
-B.pack()
-C.pack()
-D.pack()
-E.pack()
-T.pack()
-top.winfo_toplevel().title("AO launcher")
-top.geometry("350x350")
-top.protocol("WM_DELETE_WINDOW", on_closing)
-top.mainloop()
-sys.exit()
+A = QPushButton('download characters')
+A.clicked.connect(DLCHRB)
+L = QPushButton('download courtrooms')
+L.clicked.connect(DLCORTB)
+B = QPushButton('download sounds')
+B.clicked.connect(DLSOUB)
+D = QPushButton('start AO')
+D.clicked.connect(startAOB)
+C = QPushButton('add best bois courthouse server')
+C.clicked.connect(serveraddB)
+E = QPushButton('Do it all')
+E.clicked.connect(ALL)
+layout.addWidget(A)
+layout.addWidget(L)
+layout.addWidget(D)
+layout.addWidget(B)
+layout.addWidget(C)
+layout.addWidget(E)
+window.setWindowTitle('AO launcher')
+window.setGeometry(350, 350, 350, 350)
+window.setLayout(layout)
+window.show()
+sys.exit(app.exec_())
