@@ -30,7 +30,7 @@ def DLCHR():
         pass
       else:
         os.mkdir("base/characters")
-      wget.download('http://fierce-push.auto.playit.gg:47746/characters.zip', 'characters.zip')
+      wget.download('http://fierce-push.auto.playit.gg:53368/characters.zip', 'characters.zip')
       zf = ZipFile('characters.zip', 'r')
       zf.extractall('base/characters')
       zf.close()
@@ -56,7 +56,7 @@ def DLCORT():
         pass
       else:
         os.mkdir("base/background")
-      wget.download('http://fierce-push.auto.playit.gg:47746/courtrooms.zip', 'courtrooms.zip')
+      wget.download('http://fierce-push.auto.playit.gg:53368/courtrooms.zip', 'courtrooms.zip')
       zf = ZipFile('courtrooms.zip', 'r')
       zf.extractall('base/background')
       zf.close()
@@ -82,7 +82,7 @@ def DLSOU():
     os.mkdir("base/sounds")
   msg.setText("now downloading sounds please wait")
   try:
-      wget.download('http://fierce-push.auto.playit.gg:47746/sounds.zip', 'sounds.zip')
+      wget.download('http://fierce-push.auto.playit.gg:53368/sounds.zip', 'sounds.zip')
       zf = ZipFile('sounds.zip', 'r')
       zf.extractall('base/sounds')
       zf.close()
@@ -108,7 +108,7 @@ def serveradd():
         os.remove("base/serverlist.txt")
       else:
         pass
-      url = 'http://fierce-push.auto.playit.gg:47746/serverlist.txt'
+      url = 'http://fierce-push.auto.playit.gg:53368/serverlist.txt'
       wget.download(url, 'base/serverlist.txt')
       msg.setText("adding completed")
   except BaseException:
@@ -120,7 +120,7 @@ def startAO():
     msg.setText("oh no! an error occoured this might be due to AO not being in the same directory as the application. DEBUG INFO: exception on process startAO")
 def startAOA():
   msg.setText("Doing everything please wait")
-  time.sleep(113)
+  time.sleep(250)
   try:
     os.startfile("Attorney_Online.exe")
     msg.setText("all downloading finished")
